@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        .container { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
+        input, button { padding: 10px; margin-top: 10px; width: 80%; }
+        .weather-box { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>🌤️Weather Dashboard</h1>
+    <div class="container">
+        <form method="POST">
+            <input type="text" name="city" placeholder="Enter city name" required>
+            <button type="submit">Get Weather</button>
+        </form>
+
+        {% if error %}
+            <p style="color:red;">{{ error }}</p>
+        {% endif %}
+
+        {% if weather %}
+            <div class="weather-box">
+                <h2>{{ weather.city }}</h2>
+                <p>🌡️ Temperature: {{ weather.temperature }}°C</p>
+                <p>💧 Humidity: {{ weather.humidity }}%</p>
+                <p>🌤️ Condition: {{ weather.description }}</p>
+                <img src="{{ weather.icon }}" alt="Weather Icon">
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
